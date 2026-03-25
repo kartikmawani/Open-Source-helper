@@ -21,7 +21,8 @@ const user=new mongoose.Schema({
      accessToken:{
       type:String,
       required:true,
-      select:false
+        //select:false; will not allow even the developer to see ;so you have to use interface to work because
+       //it is required for security
      },
      FileData:{
             type:mongoose.Schema.Types.ObjectId,
