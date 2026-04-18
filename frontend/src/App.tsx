@@ -7,7 +7,7 @@ import {HomeTab}from './pages/Home'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter,Navigate, RouterProvider } from 'react-router-dom';
 import {MainLayout} from './pages/MainLayout'
-import {Login} from './pages/loginPage'
+import {Login} from './pages/LoginPage'
 import {ProtectedRoute} from './utils/ProtectedRoutes'
 import {AnalysisView} from './pages/AnalyzeRepo'
  const router = createBrowserRouter([
