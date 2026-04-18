@@ -25,4 +25,4 @@ COPY --from=builder --chown=node:node /app/dist ./dist
  
 EXPOSE 4000
  
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/app.js"]
