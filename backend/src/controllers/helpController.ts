@@ -1,11 +1,11 @@
-import {GeminiHelp} from '../src/services/geminiAiHelper.js'
+import {GeminiHelp} from '../services/geminiAiHelper'
 import type {Request,Response} from 'express'
 import {attempt} from '../utils/redisRateLimit.js'
 
 export const helperController=async(req:Request,res:Response)=>{
      
     try{
-            
+
         const userId=(req.user as any)?._id
         const {issueContent}=req.body
         if(!issueContent || typeof issueContent!=='string'){

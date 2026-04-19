@@ -1,5 +1,5 @@
-import * as githubRepoService from '../Services/github.permission.js'
-import User from '../Models/user.models.js'
+import * as githubRepoService from '../services/github.permission.js'
+import User from '../models/user.models.js'
  export const githubController=async(req:any,res:any)=>{
    try{ 
     //req.body is not safe req.user is safe bcoz the user is authenticated using middleware

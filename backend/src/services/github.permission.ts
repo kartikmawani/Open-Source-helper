@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Data from '../Models/user.data.model.js';  
+import Data from '../models/user.data.model.js';  
 
 interface GithubRepo{
   name:string;
