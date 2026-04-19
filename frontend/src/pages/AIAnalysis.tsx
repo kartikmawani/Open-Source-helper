@@ -36,7 +36,7 @@ import {useQuery} from '@tanstack/react-query'
 }
 const repoFetch=async()=>{
   
-  const result=await axios.get('http://localhost:4000/api/repos',{
+  const result=await axios.get('http://localhost/repos',{
    withCredentials:true//It is required otherwise the backend will not recognize it 
   })
   return result.data

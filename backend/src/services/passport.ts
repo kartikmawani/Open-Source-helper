@@ -4,7 +4,7 @@ import User from './Models/user.models.js';
 passport.use(new GitHubStrategy({
     clientID: process.env.CLIENT_ID!,//to tell ts that the credentials are there
     clientSecret: process.env.CLIENT_SECRET!,
-    callbackURL:"http://localhost:4000/auth/github/callback",
+    callbackURL:"http://localhost/auth/github/callback",
     scope: ['repo' ],
     customHeaders: {
      "User-Agent": "OpenSource helper"
