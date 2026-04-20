@@ -1,5 +1,5 @@
  
-import Redis from 'ioredis';
+import {Redis} from 'ioredis';
 
 let redisInstance: Redis | null = null;
 
@@ -11,13 +11,13 @@ export const getClient = (): Redis => {
       port: Number(process.env.REDIS_PORT) || 6379,
        
       connectTimeout: 10000, 
-      retryStrategy: (times) => {
+      retryStrategy: (times:number) => {
         const delay = Math.min(times * 50, 2000);
         return delay;
       },
     });
 
-    redisInstance.on('error', (err) => {
+    redisInstance.on('error', (err:Error) => {
       console.error('Redis_Connection_Error:', err);
     });
 

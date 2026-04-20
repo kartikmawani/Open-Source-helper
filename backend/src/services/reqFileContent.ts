@@ -1,6 +1,6 @@
-import Data from '../Models/user.data.model.js'
+import Data from '../models/user.data.model.js'
 import axios from 'axios'
-import User from '../Models/user.models.js';
+import User from '../models/user.models.js';
 import {logger} from '../utils/logger.js' 
   interface GitHubItem {
   name: string;

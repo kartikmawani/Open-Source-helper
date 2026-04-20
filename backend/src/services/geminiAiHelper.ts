@@ -8,9 +8,14 @@ if (!apiKey) {
     throw new Error("GEMINI_API_KEY is not defined in environment variables.");
 }
 const genAI = new GoogleGenerativeAI(apiKey);
-interface DecodedFile {
-    fileName: string;
-    code: string;
+ 
+interface IUserData {
+     aiAnalysis?: {
+        techStack: string;
+        skillLevel: "Beginner" | "Intermediate" | "Advanced" | "Expert";
+        tips: string[];
+        recommendations: Array<{ repoName: string; reason: string }>;
+    };
 }
 
  const AnalysisSchema = z.object({
@@ -28,7 +33,7 @@ interface DecodedFile {
 });  
    
  export const GeminiHelp=async(userId: string, issueContent: string)=>{
-        const UserData=await Data.findOne({userId:userId});
+        const UserData=await Data.findOne({userId:userId}) as IUserData|null;
         const UserSkill=UserData?.aiAnalysis?.skillLevel||'Beginner';
         const  UserStack=UserData?.aiAnalysis?.techStack||'not yet Scanned'
         const model = genAI.getGenerativeModel({

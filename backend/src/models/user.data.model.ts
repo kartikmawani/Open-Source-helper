@@ -27,8 +27,15 @@ const data= new mongoose.Schema({
         default:[]
      },
      aiAnalysis:{
-        type:String,
-        default:"This line indicates that Analysis has not been saved/done properly",
+            techStack: String,
+    skillLevel: String,
+    tips: [String],
+    recommendations: [
+      {
+        repoName: String,
+        reason: String
+      }
+    ]
      }
 
 })

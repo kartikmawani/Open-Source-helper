@@ -1,4 +1,4 @@
-import {GeminiHelp} from '../services/geminiAiHelper'
+import {GeminiHelp} from '../services/geminiAiHelper.js'
 import type {Request,Response} from 'express'
 import {attempt} from '../utils/redisRateLimit.js'
 
