@@ -7,7 +7,7 @@ export const useAuth = () => {
     queryKey: ['auth-user'],
     queryFn: async () => {
       try {
-        const res = await axios.get('http://localhost:4000/current_user', {
+        const res = await axios.get('http://localhost/api/current_user', {
           withCredentials: true,  //it is required otherwise backend  will not   recognized required cookies
         });
         return res.data;

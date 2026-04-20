@@ -19,7 +19,7 @@ export const GeminiTab: React.FC = () => {
     setLoading(true);
     try {
       // Using the POST route we discussed earlier
-      const response = await axios.post('http://localhost/help', {
+      const response = await axios.post('http://localhost/api/help', {
         issueContent: issueUrl, // In a real app, you'd fetch the content first or send the URL
         
          // Replace with your auth logic

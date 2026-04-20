@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // Mock API call for the DFS Crawler
 const startCrawl = async (repos: string) => {
-  const { data } = await axios.post(`http://localhost/analyze/${repos}`,{},
+  const { data } = await axios.post(`http://localhost/api/analyze/${repos}`,{},
     {withCredentials:true}
   );//Skeptical
   return data;

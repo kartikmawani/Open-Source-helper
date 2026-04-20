@@ -3,13 +3,14 @@ import {
   QueryClientProvider,
   
 } from '@tanstack/react-query'
-import {HomeTab}from './pages/Home'
+import {HomeTab}from './pages/Home.tsx'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter,Navigate, RouterProvider } from 'react-router-dom';
 import {MainLayout} from './pages/MainLayout'
-import {Login} from './pages/LoginPage'
-import {ProtectedRoute} from './utils/ProtectedRoutes'
+import {Login} from './pages/LoginPage.js'
+import {ProtectedRoute} from './ components/ProtectedRoutes.js'
 import {AnalysisView} from './pages/AnalyzeRepo'
+import {GeminiTab} from './pages/GeminiHelp.js'
  const router = createBrowserRouter([
   {
     path: "/login",
@@ -29,6 +30,10 @@ import {AnalysisView} from './pages/AnalyzeRepo'
           {
             path:"/Analyze/:repos",
             element:<AnalysisView/>
+           },
+           {
+            path:'/gemini',
+            element:<GeminiTab/>
            }
           // {
           //   path: "/gemini",
