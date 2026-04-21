@@ -27,7 +27,7 @@ const data= new mongoose.Schema({
         default:[]
      },
      aiAnalysis:{
-            techStack: String,
+         techStack: String,
     skillLevel: String,
     tips: [String],
     recommendations: [

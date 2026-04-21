@@ -22,7 +22,7 @@ Router.get('/current_user',refreshController);
  
 Router.get('/repos/',Authentication,githubController)
 Router.post('/analyze/:repos',Authentication,logicController)
-Router.get('/Aihelp',Authentication,helperController)
+Router.post('/Aihelp',Authentication,helperController)
 
 export default Router;
 
