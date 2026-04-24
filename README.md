@@ -2,13 +2,13 @@
 ## Project Overview
 **OpenSource-Helper** is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
 
-### ###  The Problem
+###  The Problem
 Contributing to large-scale projects is often intimidating. Newcomers frequently struggle to:
 * **Identify the true tech stack** beyond simple GitHub language tags.
 * **Decipher architectural relationships** between backend and frontend logic in monorepos.
 * **Find "Good First Issues"** that actually align with their specific skill level.
 
-### ### The Solution
+### The Solution
 Our platform acts as a **"GPS for Repositories."** By processing a GitHub URL through a specialized pipeline, the system:
 1. Performs a **recursive deep scan** of the codebase.
 2. Analyzes the **architectural intent** using Gemini 2.5 Flash-Lite.
@@ -51,24 +51,27 @@ graph LR
 
   * **Schema Enforcement via Zod** To mitigate "AI hallucinations," I implemented a **Zod validation layer**...
 
-  * **Security-First Reverse Proxy
+  * **Security-First Reverse Proxy**
     By using Nginx as a reverse proxy within a Docker bridge network, I’ve ensured that the Node.js runtime is never directly exposed. This architecture allows for centralized SSL termination and protects the internal API logic from common external vulnerabilities.
 
-## Built With
+## 🛠️ Built With
 
-This project utilizes a modern, containerized stack optimized for high-performance AI inference and type safety.
+###  Frontend
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-    Frontend: React 19, Vite, Tailwind CSS
+###  Backend & AI
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Gemini](https://img.shields.io/badge/google_gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
 
-    Backend: Node.js, Express 5, TypeScript
-
-    AI Engine: Gemini 2.5 Flash-Lite (2026 Stable)
-
-    Database & Cache: MongoDB, Redis (Planned)
-
-    DevOps: Docker, Nginx Reverse Proxy
-
-    Validation: Zod (Runtime Schema Enforcement)
+### Infrastructure & DB
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
 ##  Getting Started
 
@@ -99,31 +102,31 @@ To get a local copy up and running, follow these steps.
 
 ##  Testing
 
- testing suite using Playwright to ensure the reliability of the analysis pipeline and the stability of the UI.
+* testing suite using Playwright to ensure the reliability of the analysis pipeline and the stability of the UI.
 ### API Integration Testing
 
 The core analysis logic is validated through end-to-end API tests. This includes:
 
-    Successful Analysis: Validating that the DFS crawler and Gemini AI return a 200 OK within the 100s timeout window.
-
-    Schema Validation: Ensuring the AI's JSON output perfectly matches our Zod definitions.
-
-    Error Handling: Verifying 404 responses for non-existent repositories.
+   * Successful Analysis: Validating that the DFS crawler and Gemini AI return a 200 OK within the 100s timeout window.
+     
+   * Schema Validation: Ensuring the AI's JSON output perfectly matches our Zod definitions.
+     
+   * Error Handling: Verifying 404 responses for non-existent repositories.
 
 ### Running Tests
  
 
 # Run all tests in a serial environment to prevent DB collisions
-npx playwright test --workers=1
+     npx playwright test --workers=1
  
 
 ## Usage
 
-    Login: Authenticate via GitHub to provide the system with the necessary scope to read your target repositories.
+   * Login: Authenticate via GitHub to provide the system with the necessary scope to read your target repositories.
 
-    Input: Paste the URL of any public GitHub repository or specific Issue.
+   * Input: Paste the URL of any public GitHub repository or specific Issue.
 
-    Process: The system performs a DFS crawl to extract architectural context.
+   * Process: The system performs a DFS crawl to extract architectural context.
 
-    Result: View your personalized "Contribution Roadmap," including tech-stack breakdowns and actionable implementation steps.
+   * Result: View your personalized "Contribution Roadmap," including tech-stack breakdowns and actionable implementation steps.
  
