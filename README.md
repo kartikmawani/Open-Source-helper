@@ -1,20 +1,20 @@
 ## Project Overview
-## 📝 Project Overview
+## Project Overview
 **OpenSource-Helper** is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
 
-### ### 🛑 The Problem
+### ###  The Problem
 Contributing to large-scale projects is often intimidating. Newcomers frequently struggle to:
 * **Identify the true tech stack** beyond simple GitHub language tags.
 * **Decipher architectural relationships** between backend and frontend logic in monorepos.
 * **Find "Good First Issues"** that actually align with their specific skill level.
 
-### ### ✅ The Solution
+### ### The Solution
 Our platform acts as a **"GPS for Repositories."** By processing a GitHub URL through a specialized pipeline, the system:
 1. Performs a **recursive deep scan** of the codebase.
 2. Analyzes the **architectural intent** using Gemini 2.5 Flash-Lite.
 3. Generates a **structured roadmap** with actionable contribution steps.
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```mermaid
 graph LR
@@ -43,7 +43,7 @@ graph LR
     Logic_Tier --- G
     Logic_Tier --- H
     Logic_Tier --- I
-4. Design Decisions
+```
 
 ##  Design Decisions
 
