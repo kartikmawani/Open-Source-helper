@@ -1,24 +1,31 @@
-# Open-Source-helper
-Project Overview
+## Project Overview
 
-OpenSource-Helper is a technical analysis tool designed to lower the barrier to entry for open-source contributions.
-The Problem
+OpenSource-Helper is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
+### The Problem
 
-Contributing to large-scale projects is intimidating. Newcomers often struggle to:
-    Identify the core tech stack beyond just language tags.
-    Understand the relationship between the backend and frontend in monorepos.
-    Find entry-level issues that actually match their current skill set.
+Contributing to large-scale projects is often intimidating. Newcomers frequently struggle to:
 
-Solution:
-The platform provides a "GPS for Repositories." By inputting a GitHub URL, the system performs a deep scan of the codebase, analyzes the architectural intent using AI, and generates a structured roadmap.
+    Identify the true tech stack beyond simple GitHub language tags.
 
-Advantages:
-    Context-Aware Analysis: It don't just look at the code,It analyze the project's internal logic, dependencies, and documentation.
-    System Integrity: Every AI-generated response is validated against strict Zod schemas to ensure data reliability.
-    Performance First: Built with a containerized MERN stack and optimized for low-latency AI inference.
+    Decipher architectural relationships between backend and frontend logic in monorepos.
 
-System Architecture
+    Find "Good First Issues" that actually align with their specific skill level.
 
+### The Solution
+
+Our platform acts as a "GPS for Repositories." By processing a GitHub URL through a specialized pipeline, the system:
+
+    Performs a recursive deep scan of the codebase.
+
+    Analyzes the architectural intent using Gemini 2.5 Flash-Lite.
+
+    Generates a structured roadmap with actionable contribution steps.
+
+3. System Architecture (Visualized)
+
+Make sure your Mermaid block is wrapped in ```mermaid so GitHub renders the actual diagram instead of showing the code.
+## System Architecture
+```mermaid
 graph LR
     subgraph Client_Tier [Client Tier]
         A[React Frontend] --> B[Vite / Tailwind CSS]
@@ -46,10 +53,13 @@ graph LR
     Logic_Tier --- H
     Logic_Tier --- I
 
-Design Decisions
+4. Design Decisions
 
-    Recursive vs. Flat Crawling: "I implemented a Depth-First Search (DFS) crawler rather than a flat file-list fetch to prioritize architectural entry points (like index.ts and App.js) over deeply nested assets, optimizing the AI's token window."
+##  Design Decisions
 
-    Schema Enforcement: "To prevent 'AI hallucinations' from breaking the frontend, I implemented a Zod validation layer that acts as a runtime type-check for the Gemini API response."
+   * **Recursive DFS vs. Flat Crawling** I implemented a **Depth-First Search (DFS) crawler** rather than a standard flat file-list fetch. This allows the system to prioritize architectural entry points...
 
-    Security-First Proxying: "By using Nginx as a reverse proxy within a Docker bridge network, the backend API is never directly exposed to the public internet, reducing the attack surface."
+  * **Schema Enforcement via Zod** To mitigate "AI hallucinations," I implemented a **Zod validation layer**...
+
+  * **Security-First Reverse Proxy
+    By using Nginx as a reverse proxy within a Docker bridge network, I’ve ensured that the Node.js runtime is never directly exposed. This architecture allows for centralized SSL termination and protects the internal API logic from common external vulnerabilities.
