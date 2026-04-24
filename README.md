@@ -1,5 +1,4 @@
 ## Project Overview
-## Project Overview
 **OpenSource-Helper** is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
 
 ###  The Problem
@@ -10,9 +9,9 @@ Contributing to large-scale projects is often intimidating. Newcomers frequently
 
 ### The Solution
 OpenSource-Helper acts as a **"GPS for Repositories."** By processing a GitHub URL through a specialized pipeline, the system:
-1. Performs a **recursive deep scan** of the codebase.
-2. Analyzes the **architectural intent** using Gemini 2.5 Flash-Lite.
-3. Generates a **structured roadmap** with actionable contribution steps.
+* Performs a **recursive deep scan** of the codebase.
+* Analyzes the **architectural intent** using Gemini 2.5 Flash-Lite.
+* Generates a **structured roadmap** with actionable contribution steps.
 
 ## System Architecture
 
@@ -123,11 +122,11 @@ Run all tests in a serial environment to prevent DB collisions
 
    * GitHub Authentication: Login via GitHub to grant the system read-access to your repository metadata and structure.
 
-  *Repository Selection: From your personalized dashboard, select any repository from your GitHub list to initiate a deep scan.
+   *Repository Selection: From your personalized dashboard, select any repository from your GitHub list to initiate a deep scan.
 
-  *Automated Analysis: The system performs a recursive DFS crawl and utilizes Gemini 2.5 Flash-Lite to determine your technical level and suggest          repositories to find  issues that matches user's skill level .
+   *Automated Analysis: The system performs a recursive DFS crawl and utilizes Gemini 2.5 Flash-Lite to determine your technical level and suggest          repositories to find  issues that matches user's skill level .
 
-  *Issue Suitability (Gemini Tab): Navigate to the Gemini Tab and paste a specific GitHub Issue URL.
+   *Issue Suitability (Gemini Tab): Navigate to the Gemini Tab and paste a specific GitHub Issue URL.
 
-  *Roadmap Generation: Receive an AI-driven assessment of whether the issue matches your skill level, along with a step-by-step roadmap to implement the fix.
+   *Roadmap Generation: Receive an AI-driven assessment of whether the issue matches your skill level, along with a step-by-step roadmap to implement the fix.
  
