@@ -9,7 +9,7 @@ Contributing to large-scale projects is often intimidating. Newcomers frequently
 * **Find "Good First Issues"** that actually align with their specific skill level.
 
 ### The Solution
-Our platform acts as a **"GPS for Repositories."** By processing a GitHub URL through a specialized pipeline, the system:
+OpenSource-Helper acts as a **"GPS for Repositories."** By processing a GitHub URL through a specialized pipeline, the system:
 1. Performs a **recursive deep scan** of the codebase.
 2. Analyzes the **architectural intent** using Gemini 2.5 Flash-Lite.
 3. Generates a **structured roadmap** with actionable contribution steps.
@@ -70,6 +70,7 @@ graph LR
 
 ### Infrastructure & DB
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
 
@@ -95,7 +96,6 @@ To get a local copy up and running, follow these steps.
     GITHUB_TOKEN=your_pat_here
     MONGO_URI=mongodb://helper-db:27017/opensource-helper
 
-    Spin up the containers
     docker-compose up --build
 
     The app will be available at http://localhost via the Nginx proxy.
@@ -113,20 +113,21 @@ The core analysis logic is validated through end-to-end API tests. This includes
      
    * Error Handling: Verifying 404 responses for non-existent repositories.
 
-### Running Tests
- 
+### Running Tests 
+Run all tests in a serial environment to prevent DB collisions     
 
-# Run all tests in a serial environment to prevent DB collisions
      npx playwright test --workers=1
  
 
 ## Usage
 
-   * Login: Authenticate via GitHub to provide the system with the necessary scope to read your target repositories.
+   * GitHub Authentication: Login via GitHub to grant the system read-access to your repository metadata and structure.
 
-   * Input: Paste the URL of any public GitHub repository or specific Issue.
+  *Repository Selection: From your personalized dashboard, select any repository from your GitHub list to initiate a deep scan.
 
-   * Process: The system performs a DFS crawl to extract architectural context.
+  *Automated Analysis: The system performs a recursive DFS crawl and utilizes Gemini 2.5 Flash-Lite to determine your technical level and suggest          repositories to find  issues that matches user's skill level .
 
-   * Result: View your personalized "Contribution Roadmap," including tech-stack breakdowns and actionable implementation steps.
+  *Issue Suitability (Gemini Tab): Navigate to the Gemini Tab and paste a specific GitHub Issue URL.
+
+  *Roadmap Generation: Receive an AI-driven assessment of whether the issue matches your skill level, along with a step-by-step roadmap to implement the fix.
  
