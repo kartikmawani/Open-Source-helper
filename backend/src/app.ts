@@ -16,7 +16,7 @@ DatabaseConnected();
 const app=express();
 app.use(cors({
    credentials:true,
-   origin: 'http://localhost'
+   origin:'http://localhost',
 }))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
@@ -42,7 +42,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session());
-app.use('/',Router)
+app.use('/api',Router)
 app.use((err:any,req:Request,res:Response,next:NextFunction)=>{
    const statusCode=err.statusCode||500;
    logger.error(err.stack);

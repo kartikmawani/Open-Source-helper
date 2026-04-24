@@ -3,9 +3,9 @@ import passport from 'passport'
 import {Authentication} from '../middlewares/authMiddleware.js'
 import {githubController} from '../controllers/github.Controller.js'
 import {logicController} from '../controllers/logicController.js'
-import {refreshController} from  '../controllers/refreshController.js' 
 import {helperController} from '../controllers/helpController.js'
-const Router=express();
+const Router = express.Router();
+
 Router.get('/auth/github',passport.authenticate('github',{
     scope:['public_repo','user:email','read:user']
 }))
@@ -18,10 +18,11 @@ Router.get('/auth/github/callback', passport.authenticate('github', {
   });
    
 
-Router.get('/current_user',refreshController);
+Router.get('/current_user',Authentication,(req, res) => {
+    res.json(req.user || null)});
  
 Router.get('/repos/',Authentication,githubController)
-Router.post('/analyze/:repos',Authentication,logicController)
+Router.post('/analyze/:repoName',Authentication,logicController)
 Router.post('/Aihelp',Authentication,helperController)
 
 export default Router;

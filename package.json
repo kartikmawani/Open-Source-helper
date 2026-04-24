@@ -1,0 +1,29 @@
+{
+  "name": "open-source-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartikmawani/Open-Source-helper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kartikmawani/Open-Source-helper/issues"
+  },
+  "homepage": "https://github.com/kartikmawani/Open-Source-helper#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
+  }
+}

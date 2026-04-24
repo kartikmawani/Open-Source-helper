@@ -10,6 +10,7 @@ import {logger} from '../utils/logger.js'
 }
  export const fileScanner=async(githubId:string,repos:string)=>{
     try{
+     
  const user=await User.findOne({githubId})
               if (!user) {
               logger.warn("User is not found")    

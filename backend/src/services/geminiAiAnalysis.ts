@@ -26,7 +26,7 @@ interface DecodedFile {
  
  export const contentToGemini=async(userGithubCode:string)=>{
         const model = genAI.getGenerativeModel({
-    model:"gemini-flash-latest", 
+    model:"gemini-2.5-flash-lite", 
     
     generationConfig: {
       temperature: 0.3,
@@ -80,7 +80,7 @@ interface DecodedFile {
     const response = result.response;
     
     // Parse the response text as JSON and then validate with Zod
-    const rawJSON = JSON.parse(response.text());
+     const rawJSON = JSON.parse(response.text());
     return AnalysisSchema.parse(rawJSON); 
   } catch (err) {
     console.error("Analysis Pipeline Failed:", err);

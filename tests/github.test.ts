@@ -1,14 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-const REPO_NAME = 'test-repo-1';
+const REPO_NAME = 'Task-Manager';
 
  
 
 test.describe('Analysis API', () => {
+   
+  
   
   test('should create an analysis report from a valid repo', async ({ request }) => {
     // This hits http://localhost:4000/analyze/test-repo-1
-    const response = await request.post(`/analyze/${REPO_NAME}`, {
+    test.setTimeout(100000);
+    const response = await request.post(`/api/analyze/${REPO_NAME}`, {
       data: {
         
         depth: 'full'
@@ -18,12 +21,15 @@ test.describe('Analysis API', () => {
    
     expect(response.status()).toBe(200);
     const body = await response.json();
-    expect(body).toHaveProperty('roadmap');
-    expect(body.status).toBe('completed');
+    // Ensure these match your logicController res.json()
+    expect(body).toHaveProperty('aiAnalysis');
+    expect(body.message).toBe('The Suggestion is Completed');
+    
+ 
   });
 
   test('should return 404 for a non-existent repo', async ({ request }) => {
-    const response = await request.post('/analyze/non-existent-repo');
+    const response = await request.post('/api/analyze/non-existent-repo');
     expect(response.status()).toBe(404);
   });
 });

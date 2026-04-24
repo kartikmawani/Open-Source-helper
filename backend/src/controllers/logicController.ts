@@ -19,15 +19,15 @@ interface AuthRequest extends Request {
                 req.log.warn("No user found");
                 return res.status(401).json({ message: "No user found in request." });
        }
-       const { repos } = req.params;
+       const { repoName } = req.params;
        const {githubId,_id:userId}=authReq.user
 
-       if (!repos || typeof repos !== 'string') {
+       if (!repoName || typeof repoName !== 'string') {
              req.log.warn("Repository name is not found in the url")
             return res.status(400).json({ message: "Repository name is required in the URL." });
         }
-       await FileSaving.fileScanner(githubId,repos)
-       const decodedCode = await FileContent.contentForAnalysis(githubId,repos);
+       await FileSaving.fileScanner(githubId,repoName)
+       const decodedCode = await FileContent.contentForAnalysis(githubId,repoName);
        if(!decodedCode||decodedCode.length==0){
           req.log.warn("Unable to fetch data from github")
          return res.status(404).json({message:"There is an Error Fetching the data from github"})
@@ -35,7 +35,9 @@ interface AuthRequest extends Request {
        const formattedCode = decodedCode.map(file => `FILE: ${file.fileName}\nCONTENT:\n${file.code.substring(0, 3000)}`) // Truncate at 3k chars
          .join("\n\n---\n\n");
        const result=await AIAnalysis.contentToGemini(formattedCode)
-    
+        if (!result) {
+            throw new Error("AI Analysis returned empty result");
+        }
     await Data.findOneAndUpdate(
         {userId:userId},
         {$set:{aiAnalysis:result}}
