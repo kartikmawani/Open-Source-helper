@@ -18,9 +18,7 @@ interface IUserData {
         recommendations: Array<{ repoName: string; reason: string }>;
     };
 }
-
-// Fixed: Changed z.url() to z.string() because Gemini often omits 'https://'
-// which causes Zod to throw an error and crash the response.
+ 
 const AnalysisSchema = z.object({
     techStack: z.string(),
     skillLevel: z.enum(["Beginner", "Intermediate", "Advanced", "Expert"]),
@@ -39,9 +37,9 @@ export const GeminiHelp = async (userId: string, issueContent: string) => {
     const UserSkill = UserData?.aiAnalysis?.skillLevel || 'Beginner';
     const UserStack = UserData?.aiAnalysis?.techStack || 'Not yet Scanned';
 
-    // Fixed: Using the specific stable model version
+     
     const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-flash", 
+        model: "gemini-2.5-flash", 
         generationConfig: {
             temperature: 0.3,
             topK: 1,
@@ -93,10 +91,10 @@ export const GeminiHelp = async (userId: string, issueContent: string) => {
     try {
         const result = await model.generateContent(prompt);
         const responseText = result.response.text();
-        
+         const cleanText = responseText.replace(/```json|```/g, "").trim();
         logger.info("Gemini response received. Validating schema...");
         
-        const rawJSON = JSON.parse(responseText);
+        const rawJSON = JSON.parse(cleanText);
         return AnalysisSchema.parse(rawJSON); 
 
     } catch (err) {
@@ -105,7 +103,7 @@ export const GeminiHelp = async (userId: string, issueContent: string) => {
             issueSnippet: issueContent.substring(0, 50) 
         }, "Gemini Instructor Pipeline Failed");
 
-        // Fixed: Return a fallback object so the frontend doesn't receive 'undefined'
+         
         return {
             techStack: "Analysis Failed",
             skillLevel: UserSkill,
