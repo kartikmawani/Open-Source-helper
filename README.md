@@ -1,30 +1,21 @@
 ## Project Overview
+## 📝 Project Overview
+**OpenSource-Helper** is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
 
-OpenSource-Helper is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
-### The Problem
-
+### ### 🛑 The Problem
 Contributing to large-scale projects is often intimidating. Newcomers frequently struggle to:
+* **Identify the true tech stack** beyond simple GitHub language tags.
+* **Decipher architectural relationships** between backend and frontend logic in monorepos.
+* **Find "Good First Issues"** that actually align with their specific skill level.
 
-    Identify the true tech stack beyond simple GitHub language tags.
+### ### ✅ The Solution
+Our platform acts as a **"GPS for Repositories."** By processing a GitHub URL through a specialized pipeline, the system:
+1. Performs a **recursive deep scan** of the codebase.
+2. Analyzes the **architectural intent** using Gemini 2.5 Flash-Lite.
+3. Generates a **structured roadmap** with actionable contribution steps.
 
-    Decipher architectural relationships between backend and frontend logic in monorepos.
+## 🏗️ System Architecture
 
-    Find "Good First Issues" that actually align with their specific skill level.
-
-### The Solution
-
-Our platform acts as a "GPS for Repositories." By processing a GitHub URL through a specialized pipeline, the system:
-
-    Performs a recursive deep scan of the codebase.
-
-    Analyzes the architectural intent using Gemini 2.5 Flash-Lite.
-
-    Generates a structured roadmap with actionable contribution steps.
-
-3. System Architecture (Visualized)
-
-Make sure your Mermaid block is wrapped in ```mermaid so GitHub renders the actual diagram instead of showing the code.
-## System Architecture
 ```mermaid
 graph LR
     subgraph Client_Tier [Client Tier]
@@ -52,7 +43,6 @@ graph LR
     Logic_Tier --- G
     Logic_Tier --- H
     Logic_Tier --- I
-
 4. Design Decisions
 
 ##  Design Decisions
