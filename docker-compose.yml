@@ -3,7 +3,7 @@ services:
     build:
       context: ./frontend
       args:
-        - VITE_API_URL=/api
+        - VITE_API_URL=http://40.80.81.106:4000
     dns:
       - 8.8.8.8
       - 8.8.4.4
