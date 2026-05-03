@@ -12,7 +12,7 @@ interface Decodedfile{
     fileName:string;
     code:string;
 }
-//here repos variable is repo
+ 
  export const contentForAnalysis=async(githubId:string,repo:string)=>{
     try{
     const user=await User.findOne({githubId})
@@ -29,8 +29,7 @@ interface Decodedfile{
       const  owner=user.username
       
       const accessToken=user.accessToken;
-      //For of loop is slow it will work one by one but Promise.all will do the work parallelsy reduces by /nth time 
-      //Promisea.all reduces latency and does I/O concurency it returns an array
+      
       const fetchPromises = userData.fileNames.map(async (file) => {
       const response = await axios.get<GitHubItem>(
         `https://api.github.com/repos/${owner}/${repo}/contents/${file.path}`,

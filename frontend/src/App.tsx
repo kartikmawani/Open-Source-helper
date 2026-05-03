@@ -1,3 +1,5 @@
+import axios from 'axios';  
+axios.defaults.withCredentials = true;
 import {
   QueryClient,
   QueryClientProvider,
@@ -11,17 +13,18 @@ import {Login} from './pages/LoginPage.js'
 import {ProtectedRoute} from './ components/ProtectedRoutes.js'
 import {AnalysisView} from './pages/AnalyzeRepo'
 import {GeminiTab} from './pages/GeminiHelp.js'
+ 
  const router = createBrowserRouter([
   {
     path: "/login",
-    element: <Login/>, // Your public login page
+    element: <Login/>,  
   },
   {
-    // PROTECTED AREA
+    
     element: <ProtectedRoute/>, 
     children: [
       {
-        element: <MainLayout />, // Your layout with Header/Tabs
+        element: <MainLayout />,  
         children: [
           {
             path: "/",
@@ -35,17 +38,14 @@ import {GeminiTab} from './pages/GeminiHelp.js'
             path:'/gemini',
             element:<GeminiTab/>
            }
-          // {
-          //   path: "/gemini",
-          //   element: <GeminiTab />,
-          // },
+          
         ],
       },
     ],
   },
   {
     path: "*",
-    element: <Navigate to="/" replace />, // Catch-all redirect
+    element: <Navigate to="/" replace />,  
   },
 ]);
 

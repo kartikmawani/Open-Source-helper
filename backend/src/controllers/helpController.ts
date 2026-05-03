@@ -22,9 +22,7 @@ export const helperController=async(req:Request,res:Response)=>{
         return res.status(429).json({ message: "Slow down!", retryAfter });
     }
 
-   //  // ATTACHMENT 2: Caching
-   //  const cachedData = await getCachedBlueprint(issueId);
-   //  if (cachedData) return res.json(cachedData);
+   
       
      const result=await GeminiHelp(userId,issueContent);
       req.log.info({ result }, "Gemini response received");
