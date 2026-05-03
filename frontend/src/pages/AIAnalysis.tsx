@@ -9,7 +9,7 @@ import {useQuery} from '@tanstack/react-query'
    if (isPending) { 
       return (
     <div className="flex items-center justify-center h-20 animate-pulse text-blue-500 font-mono text-xs">
-      INITIALIZING_FETCH...
+       fetching...
     </div>
   );
 }
@@ -36,7 +36,7 @@ import {useQuery} from '@tanstack/react-query'
 }
 const repoFetch=async()=>{
   
-  const result=await axios.get('http://localhost/api/repos',{
+  const result=await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/repos`,{
    withCredentials:true//It is required otherwise the backend will not recognize it 
   })
   return result.data

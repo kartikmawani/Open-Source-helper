@@ -18,11 +18,9 @@ export const GeminiTab: React.FC = () => {
     if (!issueUrl) return;
     setLoading(true);
     try {
-      // Using the POST route we discussed earlier
-      const response = await axios.post('http://localhost/api/Aihelp', {
-        issueContent: issueUrl, // In a real app, you'd fetch the content first or send the URL
-        
-         // Replace with your auth logic
+      
+      const response = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/Aihelp`,{
+        issueContent: issueUrl,  
       },
       {withCredentials: true }
     );
@@ -42,7 +40,7 @@ export const GeminiTab: React.FC = () => {
         <p className="text-slate-500 text-[10px] uppercase tracking-[0.4em]">Bridging the gap between knowledge and contribution</p>
       </div>
 
-      {/* 2. Input Portal */}
+       
       <div className="max-w-5xl mx-auto bg-slate-900/50 border border-slate-800 rounded-[2.5rem] p-8 mb-12 shadow-2xl">
         <label className="block text-[9px] font-black text-blue-500 uppercase mb-4 tracking-widest">Target_Issue_Payload</label>
         <div className="flex flex-col md:flex-row gap-4">
@@ -62,7 +60,7 @@ export const GeminiTab: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Results Section (Conditional Rendering) */}
+       
       {data && (
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
           
@@ -82,9 +80,9 @@ export const GeminiTab: React.FC = () => {
             ))}
           </div>
 
-          {/* Right: Meta & Docs */}
+          
           <div className="space-y-8">
-            {/* Tech Stack Badge */}
+            
             <div className="p-6 rounded-[2rem] bg-blue-500/5 border border-blue-500/10">
               <p className="text-blue-500 font-black text-[8px] uppercase tracking-widest mb-2">Detected_Stack</p>
               <p className="text-white font-bold text-sm italic">{data.techStack}</p>
@@ -94,7 +92,7 @@ export const GeminiTab: React.FC = () => {
               </div>
             </div>
 
-            {/* Recommendations Section */}
+            
             <div className="space-y-4">
               <p className="text-slate-500 font-black text-[8px] uppercase tracking-widest">Recommended_Reading</p>
               {data.recommendations.map((doc, i) => (

@@ -2,9 +2,9 @@ import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-// Mock API call for the DFS Crawler
+ 
 const startCrawl = async (repos: string) => {
-  const { data } = await axios.post(`http://localhost/api/analyze/${repos}`,{},
+  const { data } = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/analyze/${repos}`,{},
     {withCredentials:true}
   );//Skeptical
   return data;
@@ -45,7 +45,7 @@ const startCrawl = async (repos: string) => {
             {isPending ? 'Crawl_In_Progress...' : 'Execute Deep Scan'}
           </button>
 
-          {/* Feedback Section */}
+          
           <div className="mt-10 space-y-4">
             {isPending && (
               <div className="p-4 rounded-2xl bg-slate-900/50 border border-slate-800 animate-pulse">

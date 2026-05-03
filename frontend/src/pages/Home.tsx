@@ -5,45 +5,43 @@ import {Link} from 'react-router-dom'
 export const HomeTab = () => {
   const queryClient = useQueryClient();
 
-  // 1. Fetching the existing list from your DB/Cache
+   
   const { data: repos, isLoading: isInitialLoading } = useQuery({
     queryKey: ['repos'],
     queryFn: async () => {
-      const res = await axios.get('http://localhost/api/repos', { withCredentials: true });
-      return res.data.repos; //  
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/repos`, { withCredentials: true });
+      return res.data.repos; 
     }
   });
 
-  // 2. The Mutation to trigger a NEW sync from GitHub
+  
   const syncMutation = useMutation({
     mutationFn: async () => {
-      return await axios.get('http://localhost/api/repos', { withCredentials: true });
+      return await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/repos`, { withCredentials: true });
     },
     onSuccess: () => {
-      // Refresh the list after syncing
+      
       queryClient.invalidateQueries({ queryKey: ['repos'] });
     }
   });
 
   const isLoading = isInitialLoading || syncMutation.isPending;
 
-  // --- RENDERING LOGIC ---
-
-  // STATE A: Loading (Spinner)
+  
   if (isLoading) {
     return (
       
       <div className="flex flex-col items-center justify-center py-20">
         <div className="h-12 w-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin mb-4"></div>
         <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest animate-pulse">
-          Crawling_GitHub_API...
+          Loading...
         </p>
           
       </div>
     );
   }
 
-  // STATE B: Empty (Show Sync Button)
+   
   if (!repos || repos?.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 border-2 border-dashed border-slate-900 rounded-[40px]">
@@ -59,7 +57,7 @@ export const HomeTab = () => {
     );
   }
 
-  // STATE C: Data Ready (Show Grid)
+  
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-end">
@@ -75,7 +73,7 @@ export const HomeTab = () => {
         </button>
       </div>
 
-      {/* REPO GRID */}
+       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {repos.map((name: string, i: number) => (
           <div key={i} className="group p-6 rounded-3xl bg-slate-900/50 border border-slate-800 hover:border-blue-500/50 hover:bg-slate-900 transition-all cursor-pointer">
