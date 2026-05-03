@@ -9,7 +9,7 @@ export const HomeTab = () => {
   const { data: repos, isLoading: isInitialLoading } = useQuery({
     queryKey: ['repos'],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/repos`, { withCredentials: true });
+      const res = await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000/api'}/repos`, { withCredentials: true });
       return res.data.repos; 
     }
   });
@@ -17,7 +17,7 @@ export const HomeTab = () => {
   
   const syncMutation = useMutation({
     mutationFn: async () => {
-      return await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/repos`, { withCredentials: true });
+      return await axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:4000/api'}/repos`, { withCredentials: true });
     },
     onSuccess: () => {
       

@@ -4,7 +4,7 @@ import axios from 'axios';
 
  
 const startCrawl = async (repos: string) => {
-  const { data } = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/api/analyze/${repos}`,{},
+  const { data } = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:4000/api'}/analyze/${repos}`,{},
     {withCredentials:true}
   );//Skeptical
   return data;
