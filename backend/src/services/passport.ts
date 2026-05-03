@@ -4,7 +4,7 @@ import User from '../models/user.models.js';
 passport.use(new GitHubStrategy({
     clientID: process.env.CLIENT_ID!,//to tell ts that the credentials are there
     clientSecret: process.env.CLIENT_SECRET!,
-    callbackURL:"http://localhost/api/auth/github/callback",
+    callbackURL:process.env.GITHUB_CALLBACK_URL|| "http://localhost:4000/api/auth/github/callback",
     scope: ['repo' ],
     customHeaders: {
      "User-Agent": "OpenSource helper"
@@ -14,7 +14,7 @@ passport.use(new GitHubStrategy({
   },
   async (accessToken: string,refreshToken:string, profile: any, done: any) => {
     try {
-        //console.log("NEW TOKEN ARRIVED:", accessToken.substring(0, 10) + "...");
+    
       const user = await User.findOneAndUpdate(
         { githubId: profile.id }, 
         { 
@@ -37,8 +37,7 @@ passport.serializeUser((user: any, done) => {
   done(null, user.id || user._id);
 });
 
-// 2. DESERIALIZE: Uses the ID from the session to find the full user in the DB.
-// This runs on every request AFTER login to populate 'req.user'.
+
 passport.deserializeUser(async (id: string , done) => {
   try {
     console.log("Deserializing user ID:", id);

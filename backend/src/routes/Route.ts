@@ -10,11 +10,11 @@ Router.get('/auth/github',passport.authenticate('github',{
     scope:['public_repo','user:email','read:user']
 }))
 Router.get('/auth/github/callback', passport.authenticate('github', { 
-  failureRedirect: 'http://localhost/login',
+  failureRedirect:(process.env.FRONTEND_URL || 'http://localhost:5173') + '/login',
   session:true
  }),
   (req, res) => {
-    res.redirect('http://localhost/');
+    res.redirect(process.env.FRONTEND_URL || 'http://localhost:5173');
   });
    
 
