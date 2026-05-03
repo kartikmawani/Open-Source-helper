@@ -6,7 +6,7 @@ export const useAuth = () => {
     queryFn: async () => {
       try {
          
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/current_user`, {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/current_user`, {
           withCredentials: true, 
         });
         return res.data;
