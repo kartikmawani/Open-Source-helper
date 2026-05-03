@@ -14,6 +14,7 @@ import type {Response,Request,NextFunction} from 'express'
 dotenv.config();
 DatabaseConnected();
 const app=express();
+app.set('trust proxy', 1);
 app.use(cors({
    credentials:true,
    origin:process.env.FRONTEND_URL,
@@ -35,7 +36,6 @@ app.use(session({
    cookie:{
       secure:false,
       httpOnly:true,
-      sameSite: 'lax',
       maxAge:1000*60*60*24
    }
 
