@@ -19,7 +19,10 @@ Router.get('/auth/github/callback', passport.authenticate('github', {
    
 
 Router.get('/current_user',Authentication,(req, res) => {
-    res.json(req.user || null)});
+    res.json({
+        loggedIn: true,
+        user: req.user
+    })});
  
 Router.get('/repos/',Authentication,githubController)
 Router.post('/analyze/:repoName',Authentication,logicController)
