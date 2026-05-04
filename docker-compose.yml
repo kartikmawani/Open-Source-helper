@@ -3,7 +3,7 @@ services:
     build:
       context: ./frontend
       args:
-        - VITE_API_URL=http://40.80.81.106:4000
+        - VITE_API_URL=https://theopensourcehelper.tech/api
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -21,14 +21,9 @@ services:
  
   backend:
     build: ./backend
-
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-
-    ports:
-      - "4000:4000"
-       
+    
+    expose:
+      - "4000"   
     env_file:
       - .env
     environment:
