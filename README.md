@@ -2,8 +2,9 @@
 **OpenSource-Helper** is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
 
 <div align="center">
-5    <img src="./frontend/src/assets/opensource_helper_15s.gif" alt="OpenSource-Helper Demo" width="800">
-6  </div>
+  <img src="./frontend/src/assets/opensource_helper_15s.gif" alt="OpenSource-Helper Demo" width="800">
+ </div>
+ 
 ###  The Problem
 Contributing to large-scale projects is often intimidating. Newcomers frequently struggle to:
 * **Identify the true tech stack** beyond simple GitHub language tags.
