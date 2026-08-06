@@ -1,9 +1,6 @@
 ## Project Overview
 **OpenSource-Helper** is a technical analysis engine designed to bridge the gap between complex codebases and new contributors.
-
-<div align="center">
-  <img src="./frontend/src/assets/opensource_helper_15s.gif" alt="OpenSource-Helper Demo" width="800">
- </div>
+ 
  
 ###  The Problem
 Contributing to large-scale projects is often intimidating. Newcomers frequently struggle to:
@@ -18,34 +15,35 @@ OpenSource-Helper acts as a **"GPS for Repositories."** By processing a GitHub U
 * Generates a **structured roadmap** with actionable contribution steps.
 
 ## System Architecture
+ 
+ ```mermaid
+flowchart LR
 
-```mermaid
-graph LR
-    subgraph Client_Tier [Client Tier]
-        A[React Frontend] --> B[Vite / Tailwind CSS]
-    end
+    A[Target Company] --> B[Tavily Search]
+    B --> C[Founder & Domain Extraction]
 
-    subgraph Proxy_Layer [Proxy Layer]
-        C[Nginx Reverse Proxy]
-    end
+    C --> D{Prospeo API}
 
-    subgraph Logic_Tier [Logic Tier]
-        D[Express.js Backend]
-        E[GitHub DFS Crawler]
-        F[Zod Validation Layer]
-    end
+    D -->|Email Found| G[Profile Enrichment]
+    D -->|Failed / Rate Limit| E{Hunter.io API}
 
-    subgraph Data_Services [Data & AI Services]
-        G[(MongoDB)]
-        H[Gemini 2.5 Flash-Lite]
-        I[GitHub REST API]
-    end
+    E -->|Email Found| G
+    E -->|Failed / Rate Limit| F[Pattern Matching<br/>firstname@domain.com]
 
-    Client_Tier --- C
-    C --- Logic_Tier
-    Logic_Tier --- G
-    Logic_Tier --- H
-    Logic_Tier --- I
+    F --> G
+
+    H[README Analyzer] --> I[Capability Matrix]
+
+    G --> J[LLM Guardrails]
+    I --> J
+
+    J --> K[JSON Draft]
+    K --> L[Nodemailer]
+    L --> M[Founder Inbox]
+
+    N[(SQLite)]
+    N --> O[Prisma ORM]
+    O --> G
 ```
 
 ##  Design Decisions
