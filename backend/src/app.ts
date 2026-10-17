@@ -12,7 +12,7 @@ import {logger} from './utils/logger.js'
 import type {Response,Request,NextFunction} from 'express'
 
 dotenv.config();
-DatabaseConnected();
+ 
 const app=express();
 app.set('trust proxy', 1);
 app.use(cors({
@@ -36,7 +36,7 @@ app.use(session({
    cookie:{
       secure:true,
       httpOnly:true,
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge:1000*60*60*24
    }
 

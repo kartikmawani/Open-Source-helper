@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter,Navigate, RouterProvider } from 'react-router-dom';
 import {MainLayout} from './pages/MainLayout'
 import {Login} from './pages/LoginPage.js'
-import {ProtectedRoute} from './ components/ProtectedRoutes.js'
+import {ProtectedRoute} from './components/ProtectedRoutes.js'
 import {AnalysisView} from './pages/AnalyzeRepo'
 import {GeminiTab} from './pages/GeminiHelp.js'
  
